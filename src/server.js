@@ -1,0 +1,12 @@
+const express = require("express");
+const cors = require("cors");
+const routes = require("./routes");
+const app = express();
+const mustacheExpress = require("mustache-express");
+app.engine("html", mustacheExpress());
+app.set("view engine", "html");
+app.use(cors());
+app.use(express.json());
+app.use(routes);
+app.use("/static", express.static(__dirname + "/public"));
+module.exports = app;
